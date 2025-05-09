@@ -175,7 +175,7 @@ class SceneController{
                     type: this.appState.ui_config.selectedType
                 }
             };
-            const response = await fetch('http://192.168.64.128:3000/api/annotations', {
+            const response = await fetch('https://emerging-stork-primarily.ngrok-free.app/api/annotations', {
                 method: 'POST',
                 mode: 'cors',
                 headers: {
@@ -368,7 +368,7 @@ class SceneController{
                     userAgent: navigator.userAgent
                 },
             };
-            const response = await fetch('http://192.168.64.128:3000/api/annotations', {
+            const response = await fetch('https://emerging-stork-primarily.ngrok-free.app/api/annotations', {
                 method: 'POST',
                 mode: 'cors',
                 headers: {
