@@ -144,8 +144,6 @@ class SceneController{
         }
     }
     async QueryHand(){
-        //shouldnot be called, raise an error
-        console.error('QueryHand error: should not be called!');
         try{
             //check raw_state
             if(this.appState.meta.raw_state != "QueryHand"){
