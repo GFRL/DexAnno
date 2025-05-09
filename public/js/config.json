@@ -1,0 +1,12 @@
+{
+    "types":[
+        { "id": 1, "name": "1_Large_Diameter", "icon": "./assets/icons/picture_1.png" },
+        { "id": 2, "name": "3_Medium_Wrap", "icon": "./assets/icons/picture_3.png" },
+        { "id": 3, "name": "6_Prismatic_4_Finger", "icon": "./assets/icons/picture_6.png" },
+        { "id": 4, "name": "22_Parallel_Extension", "icon": "./assets/icons/picture_22.png" }
+    ],
+    "actions":[
+        { "type": "success", "label": "Submit", "color": "#4CAF50" },
+        { "type": "fail", "label": "Skip", "color": "#F44336" }    
+    ]
+}

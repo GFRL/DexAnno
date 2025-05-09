@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>3D Point Selector</title>
+    <style>
+        body { margin: 0; }
+        canvas { display: block; }
+        #info {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            color: white;
+            font-family: Arial;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 左侧类型选择 -->
+    <div id="type-panel" class="panel left-bottom">
+        <div class="btn-group" id="type-buttons"></div>
+    </div>
+
+    <!-- 右侧操作按钮 -->
+    <div id="action-panel" class="panel right-bottom">
+        <div class="btn-group" id="action-buttons"></div>
+    </div>
+
+    <!-- 信息展示 -->
+    
+    <div id="coord-panel" style="
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        background: rgba(58, 242, 218, 0.9);
+        padding: 15px;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        font-family: Arial;
+        z-index: 100;
+    ">
+        <div id="info-panel" class="panel top-center">
+            <!-- 加粗 -->
+            <strong>Use left mouse click to selece a grasp type</strong><br>
+            Current type: <span id="current-type">None</span><br><br>
+            
+            <strong>Use right mouse click to select a point on the object</strong><br>
+            X: <span id="x-val">-</span><br>
+            Y: <span id="y-val">-</span><br>
+            Z: <span id="z-val">-</span>
+        </div>
+    </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/OBJLoader.js"></script>
+    <script type="module" src="js/app.js"></script>
+</body>
+</html>

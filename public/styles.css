@@ -1,0 +1,59 @@
+.panel {
+    position: fixed;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.left-bottom { left: 20px; bottom: 20px; }
+.right-bottom { right: 20px; bottom: 20px; }
+.top-center { top: 20px; left: 50%; transform: translateX(-50%); }
+
+.btn-group {
+    display: flex;
+    gap: 10px;
+}
+
+.type-btn, .action-btn {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+}
+
+.type-btn {
+    background: #f0f0f0;
+}
+.type-btn.active {
+    background: #2196F3;
+    color: white;
+}
+
+.action-btn {
+    color: white;
+    min-width: 80px;
+}
+
+/* 添加进度条样式 */
+.progress-container {
+    position: fixed;
+    bottom: 70px; /* 操作按钮上方留出空间 */
+    right: 20px;
+    width: 200px;
+    height: 4px;
+    background: #eee;
+    border-radius: 2px;
+    overflow: hidden;
+    display: none; /* 默认隐藏 */
+}
+
+.progress-bar {
+    height: 100%;
+    width: 0;
+    background: #2196F3;
+    transition: width 10s linear;
+}
