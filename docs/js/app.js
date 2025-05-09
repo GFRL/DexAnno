@@ -162,16 +162,16 @@ class SceneController{
                 metadata: {
                     query_id: timestamp,
                     raw_state: this.appState.meta.raw_state,
-                    userAgent: navigator.userAgent
+                    userAgent: navigator.userAgent,
+                    annotation: {
+                        point: {
+                            x: this.appState.ui_config.selectedPoint.x / 40,
+                            y: this.appState.ui_config.selectedPoint.y / 40,
+                            z: this.appState.ui_config.selectedPoint.z / 40
+                        },
+                        type: this.appState.ui_config.selectedType
+                    }
                 },
-                annotation: {
-                    point: {
-                        x: this.appState.ui_config.selectedPoint.x / 40,
-                        y: this.appState.ui_config.selectedPoint.y / 40,
-                        z: this.appState.ui_config.selectedPoint.z / 40
-                    },
-                    type: this.appState.ui_config.selectedType
-                }
             };
             const response = await fetch('https://emerging-stork-primarily.ngrok-free.app/api/annotations', {
                 method: 'POST',
