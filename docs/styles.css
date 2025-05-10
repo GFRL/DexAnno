@@ -57,3 +57,23 @@
     background: #2196F3;
     transition: width 10s linear;
 }
+
+/* 添加滚动条样式 */
+.scroll-container {
+    max-height: 30vh;
+    overflow-y: auto;
+    padding-right: 8px; /* 给滚动条留出空间 */
+}
+
+/* 自定义滚动条 */
+.scroll-container::-webkit-scrollbar {
+    width: 6px;
+}
+.scroll-container::-webkit-scrollbar-track {
+    background: rgba(0,0,0,0.1);
+    border-radius: 3px;
+}
+.scroll-container::-webkit-scrollbar-thumb {
+    background: rgba(58, 242, 218, 0.8);
+    border-radius: 3px;
+}

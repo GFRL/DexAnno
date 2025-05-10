@@ -1,4 +1,4 @@
-import { loadOBJ,loadOBJFromContent } from "./util.js";
+import { createRuler,loadOBJFromContent } from "./util.js";
 class SceneController{
     constructor(){
         this.appState = {
@@ -63,6 +63,7 @@ class SceneController{
         this.raycaster = new THREE.Raycaster();
         this.mouse = new THREE.Vector2();
         // load OBJ model
+        this.scene.add(createRuler(10)); // 添加标尺
     }
     initWindow(){
         window.addEventListener('contextmenu', (event) => {
@@ -83,9 +84,7 @@ class SceneController{
                 this.appState.ui_config.selectedPoint = point
                 
                 // 添加动画效果
-                document.getElementById('x-val').textContent = point.x.toFixed(2)/40;
-                document.getElementById('y-val').textContent = point.y.toFixed(2)/40;
-                document.getElementById('z-val').textContent = point.z.toFixed(2)/40;
+                document.getElementById('point-coord').textContent = `(${point.x.toFixed(2)}, ${point.y.toFixed(2)}, ${point.z.toFixed(2)})`;
             }
         })
         // 窗口自适应
@@ -117,6 +116,9 @@ class SceneController{
                 body: JSON.stringify(payload)
             });
             const result = await response.json();
+            if ('busynum' in result){
+                document.getElementById('user-count').textContent = result.busynum;
+            }
             if (result.success) {
                 this.appState.obj_config.obj_content = result.data.objdata           
                 this.ReloadObj(); // Reload the object after successful submission
@@ -182,6 +184,9 @@ class SceneController{
                 body: JSON.stringify(payload)
             });
             const result = await response.json();
+            if ('busynum' in result){
+                document.getElementById('user-count').textContent = result.busynum;
+            }
             if (result.success) {
                 this.appState.obj_config.hand_content = result.data.handdata    
                 console.log("QueryHand success:", this.appState.obj_config.obj_content);      
@@ -272,16 +277,14 @@ class SceneController{
         typeContainer.style.position = 'fixed';
         typeContainer.style.left = '20px';
         typeContainer.style.bottom = '20px';
-        // const typeButtonsHTML = config.types.map(type => `
-        //     <button data-type="${type.id}" class="type-btn">
-        //         ${type.name}
-        //     </button>
-        // `).join('');
+
         const typeButtonsHTML = config.types.map(type => `
-            <button data-type="${type.name}" 
+            <div style="display: flex; align-items: center; gap: 8px;">
+                <button 
+                    data-type="${type.name}"
                     class="type-btn"
                     style="
-                        width: 80px;
+                        width: 80px; /* 充满容器 */
                         height: 80px;
                         padding: 0;
                         border: 2px solid #3AF2DA;
@@ -289,22 +292,50 @@ class SceneController{
                         background: rgba(255,255,255,0.9);
                         cursor: pointer;
                         overflow: hidden;
+                        flex-shrink: 0; /* 禁止按钮缩小 */
                     ">
-                <img src="${type.icon}" 
-                     alt="${type.name}" 
-                     style="
-                         width: 100%;
-                         height: 100%;
-                         object-fit: contain;
-                         pointer-events: none;
-                     ">
-            </button>
+                    <img 
+                        src="${type.icon}" 
+                        alt="${type.name}" 
+                        style="
+                            width: 100%;
+                            height: 100%;
+                            object-fit: contain;
+                            pointer-events: none;
+                        ">
+                </button>
+                <div style="
+                    flex: 1;
+                    font-size: 20px; 
+                    line-height: 1.4; 
+                ">
+                    ${type.description}
+                </div>
+            </div>
         `).join('');
 
         typeContainer.innerHTML = `
-            <div style="background: rgba(58, 242, 218, 0.9); padding:15px; border-radius:8px; box-shadow:0 2px 10px rgba(0,0,0,0.1);">
-                <div style="margin-bottom:10px; font-weight:bold;">Choose Grasp Template</div>
-                <div id="type-buttons" style="display: grid; gap:8px; grid-template-columns: repeat(${Math.min(config.types.length, 4)}, 1fr);">
+            <div style="
+                background: rgba(58, 242, 218, 0.9);
+                padding:15px;
+                border-radius:8px;
+                box-shadow:0 2px 10px rgba(0,0,0,0.1);
+                width: 300px; /* 固定宽度 */
+            ">
+                <div style="
+                    margin-bottom:10px;
+                    font-weight:bold;
+                    white-space: nowrap; /* 防止标题换行 */
+                ">
+                    Choose Grasp Template
+                </div>
+                <div class="scroll-container" style="
+                    display: flex;
+                    flex-direction: column;
+                    gap: 8px;
+                    max-height: 30vh;
+                    overflow-y: auto;
+                ">
                     ${typeButtonsHTML}
                 </div>
             </div>
@@ -375,6 +406,9 @@ class SceneController{
                 body: JSON.stringify(payload)
             });
             const result = await response.json();
+            if ('busynum' in result){
+                document.getElementById('user-count').textContent = result.busynum;
+            }
         }catch(error){
             console.error('SendAnnotation error:', error);
         }
@@ -428,9 +462,7 @@ class SceneController{
 
         const coordElem = document.getElementById('coord-panel');
         coordElem.querySelector('#current-type').textContent = 'None';
-        document.getElementById('x-val').textContent = '';
-        document.getElementById('y-val').textContent = '';
-        document.getElementById('z-val').textContent = '';
+        document.getElementById('point-coord').textContent = 'None';
     }
     
 
