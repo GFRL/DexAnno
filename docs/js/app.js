@@ -320,7 +320,7 @@ class SceneController{
                 padding:15px;
                 border-radius:8px;
                 box-shadow:0 2px 10px rgba(0,0,0,0.1);
-                width: 300px; /* 固定宽度 */
+                width: 400px; /* 固定宽度 */
             ">
                 <div style="
                     margin-bottom:10px;
