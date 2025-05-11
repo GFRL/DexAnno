@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>3D Point Selector</title>
+    <title>Dexterous Annotation</title>
     <style>
         body { margin: 0; }
         canvas { display: block; }
@@ -41,15 +41,50 @@
     ">
         <div id="info-panel" class="panel top-center">
             <!-- 加粗 -->
-            <strong> <span style="color:red">Left</span> click to select a grasp type</strong><br>
-            Current type: <span id="current-type">None</span><br><br>
-            <strong> <span style="color:blue">Right</span> click to select a point on the object</strong><br>
-            Point coordinates: <span id="point-coord">None</span><br><br>
             <strong>Users online: <span id="user-count">-</span></strong>
-            <small style="color: #666;">(May lag if >10 users)</small>    
+            <small style="color: #666;">(May lag if >10 users)</small><br>
+            <div style="
+                    height: 1px;
+                    background-color: black;
+                    margin: 8px 0;
+                "></div>
+            <strong>Usage:</strong><br>
+            1.<strong>Click to select a grasp type</strong><br>
+            <div style="text-indent: 1em;">Current type: <span id="current-type">None</span><br><br></div>
+            2.<strong> <span style="color:blue">Right</span> click to select a point on the object</strong><br>
+            <div style="text-indent: 1em;">Point coordinates: <span id="point-coord">None</span><br><br></div>
+            3.<strong>Click <span style="color:red">submit</span> to get grasp (may take 5-10s).</strong><br>
+            <div style="text-indent: 1em;">(1)Click <span style="color:red">success</span> to save grasp.</div>
+            <div style="text-indent: 1em;">(2)Click <span style="color:red">fail</span> to discard grasp.</div>
+            <div style="text-indent: 1em;">(3)If failed to get grasp, return to step 1.</div>
+            <!-- 3.2.1<strong>Click <span style="color:red">success</span> to save grasp.</strong><br>
+            3.2.2<strong>Click <span style="color:red">fail</span> to discard grasp.</strong><br>
+            3.2.3<strong> If failed, return to step 1.</strong><br> -->
+            <br>
+            4.<strong>Click <span style="color:red">skip</span> to change object.</strong><br>
+            
         </div>
     </div>
     
+    <!-- LINE 10cm-->
+    <div style="
+        position: fixed;     /* 固定定位 */
+        bottom: 30px;        /* 距离屏幕底部的距离 */
+        left: 50%;           /* 水平居中 */
+        transform: translateX(-50%); /* 微调居中精度 */
+        display: flex;
+        flex-direction: column;
+        align-items: center;"
+        >
+        <div id="scale_line" style="
+           width: 142.485px;        /* 线段长度（根据需求调整） */
+            height: 2px;         /* 线宽 */
+            background: black;   /* 颜色 */
+            margin-bottom: 5px;  /* 线与标签间距 */
+        "></div>
+        <div class="scale-label">10cm</div>
+    </div>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/OBJLoader.js"></script>

@@ -1,4 +1,4 @@
-import { createRuler,loadOBJFromContent } from "./util.js";
+import {loadOBJFromContent } from "./util.js";
 class SceneController{
     constructor(){
         this.appState = {
@@ -63,7 +63,16 @@ class SceneController{
         this.raycaster = new THREE.Raycaster();
         this.mouse = new THREE.Vector2();
         // load OBJ model
-        this.scene.add(createRuler(10)); // 添加标尺
+        //create a line with 10cm length in document
+        const p1 = new THREE.Vector3(-2, 0, 0).project(this.camera);
+        const p2 = new THREE.Vector3(2, 0, 0).project(this.camera);
+        this.basePixelLength = Math.abs(p2.x - p1.x);
+        this.baseDistance=this.camera.position.length();
+    }
+    updateRuler(){
+        const nowdistance = this.camera.position.length();
+        const length = this.basePixelLength * (this.baseDistance/nowdistance)*window.innerWidth/2;
+        document.getElementById("scale_line").style.width= `${length}px`;
     }
     initWindow(){
         window.addEventListener('contextmenu', (event) => {
@@ -275,8 +284,8 @@ class SceneController{
         // 类型选择按钮
         const typeContainer = document.createElement('div');
         typeContainer.style.position = 'fixed';
-        typeContainer.style.left = '20px';
-        typeContainer.style.bottom = '20px';
+        typeContainer.style.right = '20px';
+        typeContainer.style.top = '20px';
 
         const typeButtonsHTML = config.types.map(type => `
             <div style="display: flex; align-items: center; gap: 8px;">
@@ -327,8 +336,13 @@ class SceneController{
                     font-weight:bold;
                     white-space: nowrap; /* 防止标题换行 */
                 ">
-                    Choose Grasp Template
+                    Grasp Type / Suitable Object Type
                 </div>
+                <div style="
+                    height: 1px;
+                    background-color: black;
+                    margin: 8px 0;
+                "></div>
                 <div class="scroll-container" style="
                     display: flex;
                     flex-direction: column;
@@ -478,6 +492,7 @@ const sceneController = new SceneController();
 // 动画循环
 function animate() {
     requestAnimationFrame(animate);
+    sceneController.updateRuler();
     sceneController.controls.update();
     sceneController.renderer.render(sceneController.scene, sceneController.camera);
 }

@@ -1,9 +1,9 @@
 {
     "types":[
-        { "id": 1, "name": "1_Large_Diameter", "icon": "./assets/icons/picture_1.png" , "description": "Suitable for cylinder"},
-        { "id": 2, "name": "3_Medium_Wrap", "icon": "./assets/icons/picture_3.png" , "description": "Suitable for cylinder"},
-        { "id": 3, "name": "6_Prismatic_4_Finger", "icon": "./assets/icons/picture_6.png" , "description":"Universal type <strong> Recommond </strong>"},
-        { "id": 4, "name": "22_Parallel_Extension", "icon": "./assets/icons/picture_22.png", "description":"Suitable for plank"}
+        { "id": 1, "name": "1_Large_Diameter", "icon": "./assets/icons/picture_1.png" , "description": "Cylinder"},
+        { "id": 2, "name": "3_Medium_Wrap", "icon": "./assets/icons/picture_3.png" , "description": "Cylinder"},
+        { "id": 3, "name": "6_Prismatic_4_Finger", "icon": "./assets/icons/picture_6.png" , "description":"Universal <br>(<strong> Recommond </strong>)"},
+        { "id": 4, "name": "22_Parallel_Extension", "icon": "./assets/icons/picture_22.png", "description":"Plank"}
     ],
     "actions":[
         { "type": "success", "label": "Submit", "color": "#4CAF50" },
