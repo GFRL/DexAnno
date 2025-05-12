@@ -132,10 +132,10 @@ class SceneController{
                 this.appState.obj_config.obj_content = result.data.objdata           
                 this.ReloadObj(); // Reload the object after successful submission
                 this.appState.meta.raw_state = "QueryHand";
-                //将HTML里面的"Submit","Skip"按钮改成"Success","Fail"
+                //将HTML里面的"Get Grasp","Skip"按钮改成"Success","Fail"
                 document.querySelectorAll('.action-btn').forEach(btn => {
                     const actionType = btn.dataset.action;
-                    btn.textContent = actionType === 'success' ? 'Submit' : 'Skip';
+                    btn.textContent = actionType === 'success' ? 'Get Grasp' : 'Skip';
                 });
             } else {
                 console.error("QueryObj failed:", result.message);
@@ -347,7 +347,7 @@ class SceneController{
                     display: flex;
                     flex-direction: column;
                     gap: 8px;
-                    max-height: 30vh;
+                    max-height: 60vh;
                     overflow-y: auto;
                 ">
                     ${typeButtonsHTML}

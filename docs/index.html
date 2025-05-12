@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Dexterous Annotation</title>
+    <title>Dexonomy Annotation Tool</title>
     <style>
         body { margin: 0; }
         canvas { display: block; }
@@ -41,28 +41,27 @@
     ">
         <div id="info-panel" class="panel top-center">
             <!-- 加粗 -->
-            <strong>Users online: <span id="user-count">-</span></strong>
-            <small style="color: #666;">(May lag if >10 users)</small><br>
+            <strong style="font-size: large;">How to Use</strong><br><br>
+            1.<strong>Select Grasp Type</strong> (Left-click in the right panel)<br>
+            <div style="text-indent: 1em;">Current type: <span id="current-type">None</span><br><br></div>
+            2.<strong>Pick Grasp Point</strong> (Right-click on the object)<br>
+            <div style="text-indent: 1em;">Point coordinates: <span id="point-coord">None</span><br><br></div>
+            3.<strong>Generate Grasp / Skip Object</strong> (Left-click at the bottom right)<br><br>
+            4.<strong>Annotate Grasp as Success / Failure </strong> (Left-click at the bottom right)<br><br>
             <div style="
                     height: 1px;
                     background-color: black;
                     margin: 8px 0;
                 "></div>
-             <strong>Usage:</strong><br>
-             1.<strong> <span style="color:blue">Left</span> click to select a grasp type</strong><br>
-             <div style="text-indent: 1em;">Current type: <span id="current-type">None</span><br><br></div>
-             2.<strong> <span style="color:blue">Right</span> click to select a point on the object</strong><br>
-             <div style="text-indent: 1em;">Point coordinates: <span id="point-coord">None</span><br><br></div>
-             3.<strong> <span style="color:blue">Left</span> click <span style="color:red">submit</span> to get grasp (may take 5-10s).</strong><br>
-             <!-- <div style="text-indent: 1em;">(1)Click <span style="color:red">success</span> to save grasp.</div>
-             <div style="text-indent: 1em;">(2)Click <span style="color:red">fail</span> to discard grasp.</div>
-             <div style="text-indent: 1em;">(3)If failed to get grasp, return to step 1.</div> -->
-             <!-- 3.2.1<strong>Click <span style="color:red">success</span> to save grasp.</strong><br>
-             3.2.2<strong>Click <span style="color:red">fail</span> to discard grasp.</strong><br>
-             3.2.3<strong> If failed, return to step 1.</strong><br> -->
-             <br>
-             4.<strong> <span style="color:blue">Left</span> click <span style="color:red">skip</span> to change object.</strong><br>
-             
+            <strong style="font-size: large;">Common Issue</strong><br><br>
+            <strong>1.Slow Processing</strong><br>
+            <div style="text-indent: 1em;">Backend runs on a single Linux PC (1 GPU + 2 CPUs)<br></div>
+            <div style="text-indent: 1em;">Too many users online (current: <span id="user-count">-</span>)<small style="color: #666;">(May lag if >10 users)</small><br></div>
+            <div style="text-indent: 1em;">Poor network connection<br><br></div>
+            <strong>2.Failed Grasp Generation</strong><br>
+            <div style="text-indent: 1em;">Object is too large or too small<br></div>
+            <div style="text-indent: 1em;">Selected grasp type is unsuitable<br></div>
+         
         </div>
     </div>
     
