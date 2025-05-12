@@ -203,7 +203,7 @@ class SceneController{
                 this.appState.meta.raw_state = "Annotate";
                 document.querySelectorAll('.action-btn').forEach(btn => {
                     const actionType = btn.dataset.action;
-                    btn.textContent = actionType === 'success' ? 'Success' : 'Fail';
+                    btn.textContent = actionType === 'success' ? 'Success' : 'Failure';
                 });
             } else {
                 console.error("QueryHand failed:", result.message);
@@ -296,7 +296,7 @@ class SceneController{
                         width: 80px; /* 充满容器 */
                         height: 80px;
                         padding: 0;
-                        border: 2px solid #3AF2DA;
+                        border: 2px solid #AEE6E6;
                         border-radius: 12px;
                         background: rgba(255,255,255,0.9);
                         cursor: pointer;
@@ -325,19 +325,20 @@ class SceneController{
 
         typeContainer.innerHTML = `
             <div style="
-                background: rgba(58, 242, 218, 0.9);
+                background: #AEE6E6;
                 padding:15px;
                 border-radius:8px;
                 box-shadow:0 2px 10px rgba(0,0,0,0.1);
-                width: 400px; /* 固定宽度 */
+                width: 300px; /* 固定宽度 */
             ">
                 <div style="
                     margin-bottom:10px;
                     font-weight:bold;
                     white-space: nowrap; /* 防止标题换行 */
                 ">
-                    Grasp Type / Suitable Object Type
+                    Grasp Type (Suitable Object Type)
                 </div>
+                <small style="color:gray">Other object types may work too, though the success rate may be lower.</small>
                 <div style="
                     height: 1px;
                     background-color: black;
@@ -364,13 +365,13 @@ class SceneController{
         const actionButtonsHTML = config.actions.map(action => `
             <button class="action-btn" 
                     data-action="${action.type}"
-                    style="background:${action.color}; padding:8px 16px; border:none; border-radius:4px;">
+                    style="background:${action.color}; padding:4px 8px; border:none; border-radius:4px; font-size:10px;">
                 ${action.label}
             </button>
         `).join('');
 
         actionContainer.innerHTML = `
-            <div style="background: rgba(255,255,255,0.9); padding:15px; border-radius:8px; box-shadow:0 2px 10px rgba(0,0,0,0.1); display:flex; gap:10px;">
+            <div style="background: rgba(255,255,255,0.9); padding:7.5px; border-radius:4px; box-shadow:0 2px 10px rgba(0,0,0,0.1); display:flex; gap:10px;transform: scale(2); transform-origin: bottom right;">
                 ${actionButtonsHTML}
             </div>
         `;
@@ -396,7 +397,7 @@ class SceneController{
         });
         
         const coordElem = document.getElementById('coord-panel');
-        coordElem.querySelector('#current-type').textContent = `Type ${typeId}`;
+        coordElem.querySelector('#current-type').textContent = `${typeId}`;
 
     }
     async SendAnnotation(type){

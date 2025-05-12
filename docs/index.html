@@ -32,7 +32,7 @@
         position: fixed;
         top: 20px;
         left: 20px;
-        background: rgba(58, 242, 218, 0.9);
+        background: #AEE6E6;
         padding: 15px;
         border-radius: 8px;
         box-shadow: 0 2px 10px rgba(0,0,0,0.1);
@@ -41,26 +41,27 @@
     ">
         <div id="info-panel" class="panel top-center">
             <!-- 加粗 -->
-            <strong style="font-size: large;">How to Use</strong><br><br>
-            1.<strong>Select Grasp Type</strong> (Left-click in the right panel)<br>
-            <div style="text-indent: 1em;">Current type: <span id="current-type">None</span><br><br></div>
-            2.<strong>Pick Grasp Point</strong> (Right-click on the object)<br>
-            <div style="text-indent: 1em;">Point coordinates: <span id="point-coord">None</span><br><br></div>
-            3.<strong>Generate Grasp / Skip Object</strong> (Left-click)<br><br>
-            4.<strong>Annotate Grasp as Success / Failure </strong> (Left-click)<br><br>
+            <strong style="font-size: large;">🛠️How to Use</strong><br><br>
+            0. <strong>Rotate Object</strong> (Left-drag) / <strong>Zoom</strong> (Mouse wheel)<br><br>
+            1. <strong>Select Grasp Type</strong> (Left-click)<br>
+            <div style="text-indent: 1em;"><span style='color: blue'>Current: <span id="current-type">None</span></span><br><br></div>
+            2. <strong>Pick Grasp Point</strong> (Right-click on the object)<br>
+            <div style="text-indent: 1em;"><span style='color: blue'>Current: <span id="point-coord">None</span></span><br><br></div>
+            3. <strong>Get Grasp / Skip Object</strong> (Left-click)<br><br>
+            4. <strong>Label Grasp as Success / Failure </strong> (Left-click)<br>
             <div style="
-                    height: 1px;
+                    height: 0.8px;
                     background-color: black;
                     margin: 8px 0;
                 "></div>
-            <strong style="font-size: large;">Common Issue</strong><br><br>
-            <strong>1.Slow Processing</strong><br>
-            <div style="text-indent: 1em;">Backend runs on a single Linux PC (1 GPU + 2 CPUs)<br></div>
-            <div style="text-indent: 1em;">Too many <small style="color: #666;">(>10)</small> users online (current: <span id="user-count">-</span>)<br></div>
-            <div style="text-indent: 1em;">Poor network connection<br><br></div>
-            <strong>2.Failed Grasp Generation</strong><br>
-            <div style="text-indent: 1em;">Object is too large or too small<br></div>
-            <div style="text-indent: 1em;">Selected grasp type is unsuitable<br></div>
+            <strong style="font-size: large;">⚠️Potential Issues</strong><br><br>
+            1. <strong>Slow Processing</strong><br>
+            <div style="text-indent: 1em;">・Our backend only uses 1 GPU and 2 CPUs<br></div>
+            <div style="text-indent: 1em;">・Too many users online (>10, current: <small style="color: #666;"><span id="user-count">-</span></small>)<br><br></div>
+
+            2. <strong>Failed Grasp Generation</strong><br>
+            <div style="text-indent: 1em;">・Object too large or too small<br></div>
+            <div style="text-indent: 1em;">・Grasp type unsuitable<br></div>
          
         </div>
     </div>
