@@ -198,7 +198,7 @@ class SceneController{
             }
             if (result.success) {
                 this.appState.obj_config.hand_content = result.data.handdata    
-                console.log("QueryHand success:", this.appState.obj_config.obj_content);      
+                // console.log("QueryHand success:", this.appState.obj_config.obj_content);      
                 this.ReloadObj(); // Reload the object after successful submission
                 this.appState.meta.raw_state = "Annotate";
                 document.querySelectorAll('.action-btn').forEach(btn => {

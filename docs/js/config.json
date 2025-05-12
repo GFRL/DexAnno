@@ -5,16 +5,10 @@
         { "id": 3, "name": "Precision_Grasp_3", "icon": "./assets/icons/picture_7.png" , "description":"Universal"},
         { "id": 4, "name": "Precision_Grasp_2", "icon": "./assets/icons/picture_8.png", "description":"Universal"},
         { "id": 5, "name": "Precision_Grasp_1", "icon": "./assets/icons/picture_9.png", "description":"Universal"},
-        { "id": 6, "name": "Sphere_Grasp", "icon": "./assets/icons/picture_10.png", "description":"Sphere"},
-        { "id": 7, "name": "smallplank_Grasp", "icon": "./assets/icons/picture_16.png", "description":"Thin Plank"},
-        { "id": 8, "name": "Plank_Grasp", "icon": "./assets/icons/picture_22.png", "description":"Plank"},
-        { "id": 9, "name": "scissor_Grasp", "icon": "./assets/icons/picture_19.png", "description":"Scissor<br>(<strong> Coming Soon </strong>)"},
-        { "id": 10, "name": "knife_Grasp", "icon": "./assets/icons/picture_29.png", "description":"Knife"},
-        { "id": 11, "name": "chopstick_Grasp", "icon": "./assets/icons/picture_20.png", "description":"Chopstick"},
-        { "id": 12, "name": "Precision_Disk_Grasp", "icon": "./assets/icons/picture_12.png", "description":"Precision Disk"},
-        { "id": 13, "name": "Ring_Grasp", "icon": "./assets/icons/picture_31.png", "description":"Ring"},
-        { "id": 14, "name": "Ventral_Grasp", "icon": "./assets/icons/picture_32.png", "description":"Ventral"},
-        { "id": 15, "name": "Inferior_Pincer_Grasp", "icon": "./assets/icons/picture_33.png", "description":"Inferior Pincer"}
+        { "id": 6, "name": "Adducted_Thumb_Grasp", "icon": "./assets/icons/picture_4.png", "description":"Adducted Thumb"},
+        { "id": 7, "name": "Stick_Grasp", "icon": "./assets/icons/picture_29.png", "description":"Stick"},
+        { "id": 8, "name": "Pen_Grasp", "icon": "./assets/icons/picture_20.png", "description":"Pen"},
+        { "id": 9, "name": "Lateral_Grasp", "icon": "./assets/icons/picture_16.png", "description":"Lateral"}
     ],
     "actions":[
         { "type": "success", "label": "Submit", "color": "#4CAF50" },
