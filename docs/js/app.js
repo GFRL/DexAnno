@@ -75,62 +75,55 @@ class SceneController{
         document.getElementById("scale_line").style.width= `${length}px`;
     }
     initWindow(){
-        this.touchState = {
-            startTime: 0,
-            startX: 0,
-            startY: 0,
-            isDragging: false
-        };
-        
-        window.addEventListener('pointerup', (event) => {
-            const clientX = event.touches ? event.touches[0].clientX : event.clientX;
-            const clientY = event.touches ? event.touches[0].clientY : event.clientY;
+         window.addEventListener('pointerdown', (event) => {
+            // event.preventDefault(); // 阻止默认行为
+            if (!this.targetObject) return;
+
+            // 记录初始位置用于判断是否拖动
+            const initialX = event.clientX;
+            const initialY = event.clientY;
+
+            let isDragging=false
             
-            // 记录初始状态
-            this.touchState = {
-                startTime: Date.now(),
-                startX: clientX,
-                startY: clientY,
-                isDragging: false
+            // 添加移动判断逻辑
+            const handlePointerMove = (moveEvent) => {
+                const deltaX = Math.abs(moveEvent.clientX - initialX);
+                const deltaY = Math.abs(moveEvent.clientY - initialY);
+                
+                // 如果移动超过5像素视为拖动，取消操作
+                if (deltaX > 5 || deltaY > 5) {
+                    window.removeEventListener('pointermove', handlePointerMove);
+                    isDragging=true
+                }
             };
 
-        });
-        
-        window.addEventListener('pointerdown', (event) => {
-            // event.preventDefault(); // 阻止默认行为
-            if (!this.targetObject) return; 
-
-            const isTouch = event.type === 'touchend';
-            const clientX = isTouch ? event.changedTouches[0].clientX : event.clientX;
-            const clientY = isTouch ? event.changedTouches[0].clientY : event.clientY;
+            // 添加释放逻辑
+            const handlePointerUp = () => {
+                window.removeEventListener('pointermove', handlePointerMove);
+                window.removeEventListener('pointerup', handlePointerUp);
+                if(isDragging) return; // 如果是拖动，取消操作
+                // 坐标转换（适配移动端viewport）
+                const rect = event.target.getBoundingClientRect();
+                this.mouse.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
+                this.mouse.y = - ((event.clientY - rect.top) / rect.height) * 2 + 1;
             
-            // 计算时间和距离
-            const duration = Date.now() - this.touchState.startTime;
-            const deltaX = Math.abs(clientX - this.touchState.startX);
-            const deltaY = Math.abs(clientY - this.touchState.startY);
-            
-            // 阈值设置（300ms内且偏移小于5px视为点击）
-            if (duration > 1000 || deltaX > 5 || deltaY > 5) {
-                return
-            }
-
-            // Get mouse position in normalized device coordinates
-            this.mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
-            this.mouse.y = - (event.clientY / window.innerHeight) * 2 + 1;
-        
-            this.raycaster.setFromCamera(this.mouse, this.camera);
-            
-            // check if the ray intersects with the object
-            const intersects = this.raycaster.intersectObject(this.targetObject, true);
-            if (intersects.length > 0) {
-                const point = intersects[0].point;
-                this.highlightSphere.position.copy(point);
-                this.highlightSphere.visible = true;
-                this.appState.ui_config.selectedPoint = point
+                this.raycaster.setFromCamera(this.mouse, this.camera);
                 
-                // 添加动画效果
-                document.getElementById('point-coord').textContent = `(${point.x.toFixed(2)}, ${point.y.toFixed(2)}, ${point.z.toFixed(2)})`;
-            }
+                // check if the ray intersects with the object
+                const intersects = this.raycaster.intersectObject(this.targetObject, true);
+                if (intersects.length > 0) {
+                    const point = intersects[0].point;
+                    this.highlightSphere.position.copy(point);
+                    this.highlightSphere.visible = true;
+                    this.appState.ui_config.selectedPoint = point
+                    
+                    // 添加动画效果
+                    document.getElementById('point-coord').textContent = `(${point.x.toFixed(2)}, ${point.y.toFixed(2)}, ${point.z.toFixed(2)})`;
+                }
+            };
+
+            window.addEventListener('pointermove', handlePointerMove);
+            window.addEventListener('pointerup', handlePointerUp);   
         })
         // 窗口自适应
         window.addEventListener('resize', () => {
