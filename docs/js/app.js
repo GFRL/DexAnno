@@ -75,8 +75,8 @@ class SceneController{
         document.getElementById("scale_line").style.width= `${length}px`;
     }
     initWindow(){
-        window.addEventListener('contextmenu', (event) => {
-            event.preventDefault(); // avoid the default context menu
+        window.addEventListener('click', (event) => {
+            // event.preventDefault(); // avoid the default context menu
             if (!this.targetObject) return; 
             // Get mouse position in normalized device coordinates
             this.mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
