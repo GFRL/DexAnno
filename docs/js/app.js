@@ -75,9 +75,45 @@ class SceneController{
         document.getElementById("scale_line").style.width= `${length}px`;
     }
     initWindow(){
-        window.addEventListener('click', (event) => {
-            // event.preventDefault(); // avoid the default context menu
+        this.touchState = {
+            startTime: 0,
+            startX: 0,
+            startY: 0,
+            isDragging: false
+        };
+        
+        window.addEventListener('pointerup', (event) => {
+            const clientX = event.touches ? event.touches[0].clientX : event.clientX;
+            const clientY = event.touches ? event.touches[0].clientY : event.clientY;
+            
+            // 记录初始状态
+            this.touchState = {
+                startTime: Date.now(),
+                startX: clientX,
+                startY: clientY,
+                isDragging: false
+            };
+
+        });
+        
+        window.addEventListener('pointerdown', (event) => {
+            // event.preventDefault(); // 阻止默认行为
             if (!this.targetObject) return; 
+
+            const isTouch = event.type === 'touchend';
+            const clientX = isTouch ? event.changedTouches[0].clientX : event.clientX;
+            const clientY = isTouch ? event.changedTouches[0].clientY : event.clientY;
+            
+            // 计算时间和距离
+            const duration = Date.now() - this.touchState.startTime;
+            const deltaX = Math.abs(clientX - this.touchState.startX);
+            const deltaY = Math.abs(clientY - this.touchState.startY);
+            
+            // 阈值设置（300ms内且偏移小于5px视为点击）
+            if (duration > 1000 || deltaX > 5 || deltaY > 5) {
+                return
+            }
+
             // Get mouse position in normalized device coordinates
             this.mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
             this.mouse.y = - (event.clientY / window.innerHeight) * 2 + 1;
