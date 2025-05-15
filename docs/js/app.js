@@ -100,7 +100,7 @@ class SceneController{
             // 添加释放逻辑
             const handlePointerUp = () => {
                 window.removeEventListener('pointermove', handlePointerMove);
-                window.removeEventListener('pointerup', handlePointerUp);
+                window.removeEventListener('click', handlePointerUp);
                 if(isDragging) return; // 如果是拖动，取消操作
                 // 坐标转换（适配移动端viewport）
                 const rect = event.target.getBoundingClientRect();
@@ -123,7 +123,7 @@ class SceneController{
             };
 
             window.addEventListener('pointermove', handlePointerMove);
-            window.addEventListener('pointerup', handlePointerUp);
+            window.addEventListener('click', handlePointerUp);
 
             
         })
