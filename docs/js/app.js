@@ -75,7 +75,7 @@ class SceneController{
         document.getElementById("scale_line").style.width= `${length}px`;
     }
     initWindow(){
-         window.addEventListener('pointerdown', (event) => {
+        window.addEventListener('pointerdown', (event) => {
             // event.preventDefault(); // 阻止默认行为
             if (!this.targetObject) return;
 
@@ -123,7 +123,9 @@ class SceneController{
             };
 
             window.addEventListener('pointermove', handlePointerMove);
-            window.addEventListener('pointerup', handlePointerUp);   
+            window.addEventListener('pointerup', handlePointerUp);
+
+            
         })
         // 窗口自适应
         window.addEventListener('resize', () => {
@@ -317,21 +319,29 @@ class SceneController{
         typeContainer.style.top = '20px';
 
         const typeButtonsHTML = config.types.map(type => `
-            <div style="display: flex; align-items: center; gap: 8px;">
-                <button 
-                    data-type="${type.name}"
-                    class="type-btn"
-                    style="
-                        width: 80px; /* 充满容器 */
-                        height: 80px;
-                        padding: 0;
-                        border: 2px solid #AEE6E6;
-                        border-radius: 12px;
-                        background: rgba(255,255,255,0.9);
-                        cursor: pointer;
-                        overflow: hidden;
-                        flex-shrink: 0; /* 禁止按钮缩小 */
-                    ">
+            <button 
+                data-type="${type.name}"
+                class="type-btn"
+                style="
+                    width: 100%; /* 占满容器宽度 */
+                    padding: 12px;
+                    border: 2px solid #AEE6E6;
+                    border-radius: 12px;
+                    background: rgba(255,255,255,0.9);
+                    cursor: pointer;
+                    display: flex;
+                    align-items: center;
+                    gap: 8px;
+                ">
+                <!-- 图标部分保持原样 -->
+                <div style="
+                    width: 80px;
+                    height: 80px;
+                    flex-shrink: 0;
+                    border-radius: 8px;
+                    overflow: hidden;
+                    pointer-events: none;
+                ">
                     <img 
                         src="${type.icon}" 
                         alt="${type.name}" 
@@ -341,15 +351,18 @@ class SceneController{
                             object-fit: contain;
                             pointer-events: none;
                         ">
-                </button>
+                </div>
+                <!-- 文字描述部分 -->
                 <div style="
                     flex: 1;
                     font-size: 20px; 
-                    line-height: 1.4; 
+                    line-height: 1.4;
+                    text-align: left;
+                    pointer-events: none;
                 ">
                     ${type.description}
                 </div>
-            </div>
+            </button>
         `).join('');
 
         typeContainer.innerHTML = `
