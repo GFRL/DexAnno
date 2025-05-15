@@ -77,6 +77,8 @@ class SceneController{
     initWindow(){
         window.addEventListener('pointerdown', (event) => {
             // event.preventDefault(); // 阻止默认行为
+            console.log('target:', event.target.tagName);
+            if (event.target.tagName !== 'CANVAS') return; // 只在canvas上响应
             if (!this.targetObject) return;
 
             // 记录初始位置用于判断是否拖动
@@ -100,7 +102,7 @@ class SceneController{
             // 添加释放逻辑
             const handlePointerUp = () => {
                 window.removeEventListener('pointermove', handlePointerMove);
-                window.removeEventListener('click', handlePointerUp);
+                window.removeEventListener('pointerup', handlePointerUp);
                 if(isDragging) return; // 如果是拖动，取消操作
                 // 坐标转换（适配移动端viewport）
                 const rect = event.target.getBoundingClientRect();
@@ -123,7 +125,7 @@ class SceneController{
             };
 
             window.addEventListener('pointermove', handlePointerMove);
-            window.addEventListener('click', handlePointerUp);
+            window.addEventListener('pointerup', handlePointerUp);
 
             
         })
