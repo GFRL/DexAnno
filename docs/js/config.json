@@ -1,14 +1,14 @@
 {
     "types":[
-        { "id": 1, "name": "Precision_Grasp_4", "icon": "./assets/icons/picture_6.png" , "description": "5 Fingertips <br>(Universal)"},
-        { "id": 2, "name": "Cylinder_Grasp", "icon": "./assets/icons/picture_1.png" , "description": "Power Warp<br>(Cylinder)"},
-        { "id": 4, "name": "Stick_Grasp", "icon": "./assets/icons/picture_29.png", "description":"Ventral <br>(Stick)"},
-        { "id": 5, "name": "Pen_Grasp", "icon": "./assets/icons/picture_20.png", "description":"Writing Type <br>(Pen)"},
-        { "id": 6, "name": "Lateral_Grasp", "icon": "./assets/icons/picture_16.png", "description":"Lateral <br>(Flat)"},
-        { "id": 7, "name": "Precision_Grasp_3", "icon": "./assets/icons/picture_7.png" , "description":"4 Fingertips <br>(Universal)"},
-        { "id": 3, "name": "Adducted_Thumb_Grasp", "icon": "./assets/icons/picture_4.png", "description":"Adducted Thumb <br>(Cylinder)"},
-        { "id": 8, "name": "Precision_Grasp_2", "icon": "./assets/icons/picture_8.png", "description":"3 Fingertips <br>(Universal)"},
-        { "id": 9, "name": "Precision_Grasp_1", "icon": "./assets/icons/picture_9.png", "description":"2 Fingertips <br>(Universal)"}
+        { "id": 1, "name": "5 Fingertips", "icon": "./assets/icons/picture_6.png" , "description": "5 Fingertips <br>(Universal)"},
+        { "id": 2, "name": "Power Warp", "icon": "./assets/icons/picture_1.png" , "description": "Power Warp<br>(Cylinder)"},
+        { "id": 4, "name": "Ventral", "icon": "./assets/icons/picture_29.png", "description":"Ventral <br>(Stick)"},
+        { "id": 5, "name": "Writing Type", "icon": "./assets/icons/picture_20.png", "description":"Writing Type <br>(Pen)"},
+        { "id": 6, "name": "Lateral", "icon": "./assets/icons/picture_16.png", "description":"Lateral <br>(Flat)"},
+        { "id": 7, "name": "4 Fingertips", "icon": "./assets/icons/picture_7.png" , "description":"4 Fingertips <br>(Universal)"},
+        { "id": 3, "name": "Adducted Thumb", "icon": "./assets/icons/picture_4.png", "description":"Adducted Thumb <br>(Cylinder)"},
+        { "id": 8, "name": "3 Fingertips", "icon": "./assets/icons/picture_8.png", "description":"3 Fingertips <br>(Universal)"},
+        { "id": 9, "name": "2 Fingertips", "icon": "./assets/icons/picture_9.png", "description":"2 Fingertips <br>(Universal)"}
         
     ],
     "actions":[
